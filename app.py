@@ -7,12 +7,8 @@ from ultralytics import YOLO
 
 app = Flask(__name__)
 
-# Load pre-trained YOLOv8 model
-# model_detect_path = "model/detect/best.pt"
-# model_detect = YOLO(model_detect_path)
-
+#Load module
 model_segment_path = "model/segment/best.pt"
-# model_segment_path = "new_model/best.pt"
 model_segment = YOLO(model_segment_path)
 
 # Apply Flask CORS
