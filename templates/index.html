@@ -1,0 +1,90 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Object Detection App</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+    <style>
+        body {
+            background-color: #f8f9fa;
+            color: #343a40;
+        }
+
+        .container {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        h1 {
+            color: #f8f8f8;
+        }
+
+        .btn-primary, .btn-success {
+            background-color: #6137eb;
+            border-color: #6137eb;
+        }
+
+        .btn-primary:hover, .btn-success:hover {
+            background-color: #218838;
+            border-color: #218838;
+        }
+
+        .form-group input[type="file"] {
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+        }
+
+        .text-danger {
+            color: #dc3545;
+        }
+
+        .img-fluid {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="mb-4">Object Detection App</h1>
+
+        <form method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+                <input type="file" name="file" class="form-control-file" accept=".jpg, .jpeg, .png" required>
+            </div>
+            <!-- Thêm nút "Upload and Segment" -->
+            <button type="submit" class="btn btn-success" name="segment">Upload and Segment</button>
+        </form>
+
+        {% if error %}
+            <p class="text-danger mt-2">{{ error }}</p>
+        {% endif %}
+
+        {% if msg %}
+            <p class="text-danger mt-2">{{ msg }}</p>
+        {% endif %}
+
+        {% if img_path %}
+            <img src="{{ img_path }}" alt="Uploaded Image" class="img-fluid mt-4 mb-4">
+            {% if num_objects %}
+                <h2>Number of Objects: {{ num_objects }}</h2>
+            {% endif %}
+        {% endif %}
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+</html>
